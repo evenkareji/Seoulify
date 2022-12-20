@@ -1,0 +1,129 @@
+@mixin mq-pc() {
+  @media (min-width: 800px) {
+    @content;
+  }
+}
+@mixin inner($w: 1200) {
+  max-width: $w + px;
+  width: 88%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@mixin flex() {
+  display: flex;
+  justify-content: space-between;
+  @media (min-width: 800px) {
+    @content;
+  }
+}
+@function rem($value) {
+  @return ($value/14) + rem;
+}
+$color-current: #b79b6c;
+$color-doll: #b79b6c;
+$colorWhite: #fff;
+$bgBlack: #000;
+/*BASE
+---------------------------*/
+
+html {
+  font-size: (14/16) * 100%;
+
+  @include mq-pc() {
+    font-size: (16/16) * 100%;
+  }
+}
+body {
+  font-family: 'Helvetica';
+}
+li {
+  list-style: none;
+}
+.current {
+  color: $color-current;
+}
+.doll {
+  color: $color-doll;
+}
+span {
+  display: inline-block;
+}
+/*BLOCK
+---------------------------*/
+.header {
+  position: relative;
+  &__hero {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 100;
+    width: 100%;
+  }
+  &__inner {
+    @include inner();
+
+    @include flex();
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+  }
+}
+.nav {
+  &__lists {
+    @include flex();
+  }
+  &__item {
+    font-size: rem(16);
+    margin-right: (16/16) + em;
+  }
+}
+
+.unit {
+  &__catch {
+    font-size: rem(14);
+    margin-bottom: (28/14) + em;
+  }
+  &__title {
+    font-size: rem(32);
+    margin-bottom: (32/42) + em;
+    font-weight: bold;
+  }
+}
+.btn {
+  width: 185px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: rem(14);
+  margin-bottom: (56/14) + em;
+  color: $colorWhite;
+  background: $bgBlack;
+  padding-left: (47/14) + em;
+  padding-right: (46/14) + em;
+  padding-top: (21/14) + em;
+  padding-bottom: (21/14) + em;
+}
+.frame {
+  position: relative;
+  &__sale {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+/*modifier
+*/
+.visual {
+  margin-bottom: (84/14) + em;
+  &__pic {
+    width: 100%;
+    height: clamp(400px, 50vw, 600px);
+    object-fit: cover;
+  }
+}
+
+/* index.html
+-----------------------*/
+.cotton {
+  &__inner {
+    @include inner();
+  }
+}
